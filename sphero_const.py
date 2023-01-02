@@ -16,6 +16,9 @@ Unknown2 Characteristic <00010003-574f-4f20-5370-6865726f2121>
 The rest of the values saved in the dictionaries below, were borrowed from
 @igbopie's javacript library, which is available at https://github.com/igbopie/spherov2.js
 
+2023-01-01 @Archelon6357:
+This dictionary list file is borrowed from @MProx's python library, 
+which is available at https://github.com/MProx/Sphero_mini.
 '''
 
 deviceID = {"apiProcessor": 0x10,                   # 16
