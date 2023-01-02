@@ -4,7 +4,7 @@ from bleak import BleakClient
 from sphero_const   import *
 from sphero_uuid    import *
 
-address = "E7:A9:B0:C2:CD:7F"
+address = None
 
 class LibSphero():
 
@@ -17,11 +17,11 @@ class LibSphero():
             model_number = await self.client.read_gatt_char(UUID_MODEL_NBR)
             print("Model Number: {0}".format("".join(map(chr, model_number))))
 
-            # 接続を10秒後に切断する機能をOFFにする
+            # Enable connection continuity
             await self.client.write_gatt_char(UUID_SPHERO_CHARACTERISTIC_ANTI_DOS ,"usetheforce...band".encode(), response=True)
             print("Enable connection continuity")
 
-            # Sphero mini を 起動
+            # Turn on the sphero mini 
             await self.wait(1.0)
             await self.resume()
             print("Awake sphero robot")
@@ -94,29 +94,4 @@ class LibSphero():
 
         await self.client.write_gatt_char(UUID_SPHERO_CHARACTERISTIC_HANDLE_1C, output, response = True)
 
-
-# Test code 
-async def main(address=None):
-    sphero = LibSphero()
-    
-    await sphero.init(address)
-    await sphero.resume()
-
-    await sphero.wait(3.0)
-
-    await sphero.setLightColor(255, 0, 0)
-    await sphero.wait(1.0)
-    await sphero.setLightColor(0, 255, 0)
-    await sphero.wait(1.0)
-    await sphero.setLightColor(0, 0, 255)
-    await sphero.wait(1.0)
-
-    # await asyncio.sleep(2.0)
-    await sphero.sleep()
-
-    await sphero.disconnect()
-
-
-if __name__ == '__main__':
-    asyncio.run(main(address))
    

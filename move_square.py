@@ -1,7 +1,9 @@
+# The sample code for moving a robot in a square path.
+
 import asyncio
 import libsphero 
 
-address = "E7:A9:B0:C2:CD:7F"
+address = ""
 
 async def main(address=None):
     sphero = libsphero.LibSphero()
