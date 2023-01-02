@@ -13,7 +13,7 @@ address = "E7:A9:B0:C2:CD:7F"
 
 async def main(address):
 
-    disconnected_event = asyncio.Event()
+    # disconnected_event = asyncio.Event()
 
     def disconnected_callback(client):
         print("Disconnected callback called!")
