@@ -7,7 +7,6 @@ async def main(address=None):
     sphero = libsphero.LibSphero()
     
     await sphero.init(address)
-    await sphero.resume()
 
     await sphero.wait(3.0)
 

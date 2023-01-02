@@ -19,6 +19,12 @@ class LibSphero():
 
             # 接続を10秒後に切断する機能をOFFにする
             await self.client.write_gatt_char(UUID_SPHERO_CHARACTERISTIC_ANTI_DOS ,"usetheforce...band".encode(), response=True)
+            print("Enable connection continuity")
+
+            # Sphero mini を 起動
+            await self.wait(1.0)
+            await self.resume()
+            print("Awake sphero robot")
 
         except Exception as e:
             print(e)
@@ -64,7 +70,7 @@ class LibSphero():
         angle_MSByte    = (angle & 0xFF00) >> 8
         angle_LSByte    = angle & 0xFF
 
-        self._write(
+        await self._write(
             uuid  = UUID_SPHERO_CHARACTERISTIC_HANDLE_1C,
             devID = deviceID["driving"],
             cmdID = drivingCommands["driveWithHeading"],
